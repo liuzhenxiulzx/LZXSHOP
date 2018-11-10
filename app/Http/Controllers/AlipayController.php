@@ -64,41 +64,42 @@ class AlipayController extends Controller
             $order->addgoods_id = $v*1;
             $order->goods_id = $goodsid[$key];
             $order->goodsCount = $counts[$key];
+            $order->isrefund = 0;
             $order->save();
         }
         
         session(['orderid'=>$orderid]);
 
-        // 删除购物车中的商品
-        if(is_array($cartid)){
-            // 如果为数组
-            foreach($cartid as $v){
+        // // 删除购物车中的商品
+        // if(is_array($cartid)){
+        //     // 如果为数组
+        //     foreach($cartid as $v){
               
-                $goodsdel =  addgoods::where('id',$v)->delete();
-            }
+        //         $goodsdel =  addgoods::where('id',$v)->delete();
+        //     }
             
-        }else{
+        // }else{
         
-            // 如果不为数组
-            $goodsdel =  addgoods::where('id',$v)->delete();
-        }
+        //     // 如果不为数组
+        //     $goodsdel =  addgoods::where('id',$v)->delete();
+        // }
        
-        // 删除库存量
-        if(is_array($sku_id)){
-            // 如果为数组
-            foreach($sku_id as $v){
-                foreach($counts as $k){
+        // // 删除库存量
+        // if(is_array($sku_id)){
+        //     // 如果为数组
+        //     foreach($sku_id as $v){
+        //         foreach($counts as $k){
                 
-                    $skutable = DB::table('skuses')->where('id',$v)->decrement('Stock',$k);
+        //             $skutable = DB::table('skuses')->where('id',$v)->decrement('Stock',$k);
 
-                }
-            }
+        //         }
+        //     }
             
-        }else{
+        // }else{
         
-            // 如果不为数组
-            $skutable = DB::table('skuses')->where('id',$sku_id)->decrement('votes', $counts);
-        }
+        //     // 如果不为数组
+        //     $skutable = DB::table('skuses')->where('id',$sku_id)->decrement('votes', $counts);
+        // }
        
         
         // ===========================
@@ -118,6 +119,43 @@ class AlipayController extends Controller
     public function result()
     {
         $data = Pay::alipay($this->config)->verify(); // 是的，验签就这么简单！
+
+        // 获取购物车商品id
+        $cartid = session('cartid');
+         // 删除购物车中的商品
+         if(is_array($cartid)){
+            // 如果为数组
+            foreach($cartid as $v){
+              
+                $goodsdel =  addgoods::where('id',$v)->delete();
+            }
+            
+        }else{
+        
+            // 如果不为数组
+            $goodsdel =  addgoods::where('id',$v)->delete();
+        }
+       
+        // 删除库存量
+         // 获取sku id
+         $sku_id =  session('skuid');
+        //  获取购买的商品数量
+        $counts =  session('goodscount');
+        if(is_array($sku_id)){
+            // 如果为数组
+            foreach($sku_id as $v){
+                foreach($counts as $k){
+                
+                    $skutable = DB::table('skuses')->where('id',$v)->decrement('Stock',$k);
+
+                }
+            }
+            
+        }else{
+        
+            // 如果不为数组
+            $skutable = DB::table('skuses')->where('id',$sku_id)->decrement('votes', $counts);
+        }
 
         $orderid = session('orderid');
         $a = ordernumber::where('id',"=",$orderid)->update(['isPay'=>1]);

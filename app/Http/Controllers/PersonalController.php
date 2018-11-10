@@ -7,6 +7,7 @@ use App\Models\orders;
 use App\Models\ordernumber;
 use App\Models\products;
 use App\Models\skus;
+use Illuminate\Pagination\Paginator;
 
 class PersonalController extends Controller
 {
@@ -15,7 +16,7 @@ class PersonalController extends Controller
         $userName = session('username');
         $userid = session('id');
 
-        $order = orders::where('user_id',$userid)->orderBy('id', 'desc')->get();
+        $order = orders::where('user_id',$userid)->orderBy('id', 'desc')->get()->paginate(2);
         // 关联订单号表
         foreach($order as $v){
              $v->ordernum;

@@ -18,5 +18,3 @@ class orders extends Model
         return $this->belongsTo(skus::class,'sku_id');
     }
 }
-
-

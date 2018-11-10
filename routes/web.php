@@ -166,6 +166,7 @@ Route::get('/Admin/trademoney','Admin_TradeController@trademoney')->name('Admint
 
 Route::get('/Admin/ordermanage','Admin_OrderController@ordermanage')->name('ordermanage');  //订单管理
 Route::get('/Admin/orderprocess','Admin_OrderController@orderprocess')->name('orderprocess');  //订单处理
+Route::get('/Admin/orderdetails','Admin_OrderController@orderdetails')->name('orderdetails');  //订单详情
 Route::get('/Admin/refund','Admin_OrderController@refund')->name('refund');  //退款管理
 
 

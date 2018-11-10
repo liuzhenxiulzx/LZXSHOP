@@ -166,6 +166,8 @@ $(function(){
                                     </tbody>
                                 </table>
                                 @endforeach
+
+                                {{$order->links()}}
                                 <!--order2-->
                                 <div class="choose-title">
                                     <label data-toggle="checkbox" class="checkbox-pretty ">
