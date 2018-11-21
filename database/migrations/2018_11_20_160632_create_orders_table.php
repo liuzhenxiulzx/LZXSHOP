@@ -21,10 +21,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('goods_id')->comment('商品id');
             $table->unsignedInteger('sku_id')->comment('skuid');
             $table->unsignedInteger('goodsCount')->comment('结算时商品的数量');
-            $table->unsignedInteger('isrefund')->default(0)->comment('是否退款；0:未退款；1:已退款');
+            $table->unsignedInteger('order_state')->default(2)->comment('订单状态;1:已退款, 2:待发货，3:待收货，4:已签收，5:已退货');
             $table->timestamps();
         });
-
     }
 
     /**

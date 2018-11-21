@@ -64,43 +64,12 @@ class AlipayController extends Controller
             $order->addgoods_id = $v*1;
             $order->goods_id = $goodsid[$key];
             $order->goodsCount = $counts[$key];
-            $order->isrefund = 0;
+            $order->order_state = 2;
             $order->save();
         }
         
         session(['orderid'=>$orderid]);
 
-        // // 删除购物车中的商品
-        // if(is_array($cartid)){
-        //     // 如果为数组
-        //     foreach($cartid as $v){
-              
-        //         $goodsdel =  addgoods::where('id',$v)->delete();
-        //     }
-            
-        // }else{
-        
-        //     // 如果不为数组
-        //     $goodsdel =  addgoods::where('id',$v)->delete();
-        // }
-       
-        // // 删除库存量
-        // if(is_array($sku_id)){
-        //     // 如果为数组
-        //     foreach($sku_id as $v){
-        //         foreach($counts as $k){
-                
-        //             $skutable = DB::table('skuses')->where('id',$v)->decrement('Stock',$k);
-
-        //         }
-        //     }
-            
-        // }else{
-        
-        //     // 如果不为数组
-        //     $skutable = DB::table('skuses')->where('id',$sku_id)->decrement('votes', $counts);
-        // }
-       
         
         // ===========================
 

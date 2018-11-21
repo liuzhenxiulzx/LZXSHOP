@@ -20,3 +20,5 @@ class Admin_TradeController extends Controller
         return view('admin.transaction.Amounts');
     }
 }
+
+

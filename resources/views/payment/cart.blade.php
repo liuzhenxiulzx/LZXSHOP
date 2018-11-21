@@ -75,7 +75,7 @@
 						<div class="cart-list">
 							<ul class="goods-list yui3-g">
 								<li class="yui3-u-1-24">
-									<input type="checkbox" name="cartid[]" :value="goodsname.id"    v-model="goodsname.selected" />
+									<input type="checkbox" name="cartid[]" :value="goodsname.id"  id="select"  v-model="goodsname.selected" />
 								</li>
 								<li class="yui3-u-11-24">
 									<div class="good-item">
@@ -438,4 +438,9 @@
 </body>
 
 </html>
+<script>
+	$("#select").click(function(){
+		
+	})
+</script>
 
