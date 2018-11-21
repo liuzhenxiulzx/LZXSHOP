@@ -282,23 +282,8 @@ $(function(){
                             </div>
 
                             <div class="choose-order">
-                                <label data-toggle="checkbox" class="checkbox-pretty checked">
-                                        <input type="checkbox" checked="checked"><span>全选</span>
-                                    </label>
-                                <a href="" class="sui-btn btn-info btn-bordered hepay-btn">合并付款</a>
                                 <div class="sui-pagination pagination-large top-pages">
-                                    <ul>
-                                        <li class="prev disabled"><a href="#">«上一页</a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li class="dotted"><span>...</span></li>
-                                        <li class="next"><a href="#">下一页»</a></li>
-                                    </ul>
-                                    <div><span>共10页&nbsp;</span><span>
-                                            到
-                                            <input type="text" class="page-num"><button class="page-confirm" onclick="alert(1)">确定</button>
-                                            页</span></div>
+                                {{$pading->links()}}
                                 </div>
                             </div>
 							

@@ -16,8 +16,8 @@ class PersonalController extends Controller
         $userName = session('username');
         $userid = session('id');
 
-        $order = orders::where('user_id',$userid)->orderBy('id', 'desc')->get();
-      
+        $order = orders::where('user_id',$userid)->orderBy('id', 'desc')->paginate(5);
+     
         // 关联订单号表
         foreach($order as $v){
              $v->ordernum;
@@ -32,6 +32,7 @@ class PersonalController extends Controller
         foreach($order as $v){
             $v->ordersku;
         } 
+        // dd($order);
     
         return view('personal.home_index',[
             'userName'=>$userName,
@@ -43,7 +44,7 @@ class PersonalController extends Controller
     // 待付款
     public function pendingpay(){
       
-        $no = ordernumber::where('isPay',0)->get();
+        $no = ordernumber::where('isPay',0)->paginate(5);
    
         // 判断是否有数据
         if(count($no)){
@@ -78,7 +79,7 @@ class PersonalController extends Controller
 
     // 待发货
     public function pendingdelivery(){
-        $deling = orders::where('order_state',2)->orderBy('id', 'desc')->get();
+        $deling = orders::where('order_state',2)->orderBy('id', 'desc')->paginate(5);
        
         if(count($deling)){
             
@@ -113,7 +114,7 @@ class PersonalController extends Controller
 
      //待收货
      public function overgoods(){
-        $overgoods = orders::where('order_state',3)->orderBy('id', 'desc')->get();
+        $overgoods = orders::where('order_state',3)->orderBy('id', 'desc')->paginate(5);
 
         if(count($overgoods)){
     
@@ -131,7 +132,6 @@ class PersonalController extends Controller
             foreach($overgoods as $v){
                 $v->ordersku;
             } 
-        
             return view('personal.home_order_receive',[
                 'overgoods'=>$overgoods,
                 'num'=>1
@@ -150,7 +150,7 @@ class PersonalController extends Controller
     // 待评价
     public function evaluate(){
         
-        $evaluates = orders::where('order_state',4)->orderBy('id', 'desc')->get();
+        $evaluates = orders::where('order_state',4)->orderBy('id', 'desc')->paginate(5);
 
         if(count($evaluates)){
               // 关联订单号表

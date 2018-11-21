@@ -29,7 +29,7 @@
         <script src="/Admin/assets/layer/layer.js" type="text/javascript" ></script>
         <script src="/Admin/assets/laydate/laydate.js" type="text/javascript"></script>
         <script type="text/javascript" src="/Admin/Widget/zTree/js/jquery.ztree.all-3.5.min.js"></script> 
-        <script src="/Admin/js/lrtk.js" type="text/javascript" ></script>
+		<script src="/Admin/js/lrtk.js" type="text/javascript" ></script>
 <title>产品列表</title>
 </head>
 <body>
@@ -95,7 +95,16 @@
 	  </tr>
     @endforeach
     </tbody>
-    </table>
+	</table>
+	<!-- 分页 -->
+	<div id="page">
+			{{ $product->links() }}
+	</div>
+	 
+
+
+
+
     </div>     
   </div>
  </div>

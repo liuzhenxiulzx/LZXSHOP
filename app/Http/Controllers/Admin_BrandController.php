@@ -12,7 +12,7 @@ use DB;
 class Admin_BrandController extends Controller
 {
     public function Index(){
-        $Brand = DB::table('Brands')->get();
+        $Brand = DB::table('Brands')->paginate(5);
        
         return view('admin.product.Brand_Manage',[
             'Brand'=>$Brand

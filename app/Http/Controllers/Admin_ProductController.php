@@ -14,8 +14,9 @@ use Storage;
 class Admin_ProductController extends Controller
 {
     public function Index(){
-        $product = Products::get();
-
+        $product = Products::paginate(5);
+        // $product = Products::get();
+        // dd($product);
         return view('admin.product.Products_List',[
             'product'=>$product
         ]);

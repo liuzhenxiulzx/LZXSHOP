@@ -97,6 +97,11 @@
     @endforeach
         </tbody>
         </table>
+        <!-- 分页 -->
+        <div id="page">
+                {{ $Brand->links() }}
+        </div>
+
         </div>
      </div>
     
